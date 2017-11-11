@@ -13,10 +13,16 @@ import { AuthModule } from './auth/auth.module';
 // routes
 export const ROUTES: Routes = [];
 
+// components
+import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { AppNavComponent } from './components/app-nav/app-nav.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppHeaderComponent,
+    AppNavComponent
   ],
   imports: [
     BrowserModule,
