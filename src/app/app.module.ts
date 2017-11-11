@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+// store
+import { Store } from '../store';
+
 // feature modules
 import { AuthModule } from './auth/auth.module';
 
@@ -20,7 +23,9 @@ export const ROUTES: Routes = [];
     AuthModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [
+    Store
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
