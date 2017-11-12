@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '../../../../../store';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { AuthService } from '../../../../auth/shared/serivces/auth/auth.service';
+import { AuthService } from '../../../../auth/shared/services/auth/auth.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 
