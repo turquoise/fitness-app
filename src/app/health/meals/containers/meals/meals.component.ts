@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MealsService, Meal } from '../../../shared/services/meals/meals.service';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -11,8 +14,21 @@ import { Component } from '@angular/core';
   `
 })
 
-export class MealsComponent {
+export class MealsComponent implements OnInit, OnDestroy {
 
-  constructor() {}
+  meals$: Observable<Meal[]>;
+  subscription: Subscription;
+
+  constructor(
+    private mealsService: MealsService
+  ) {}
+
+  ngOnInit() {
+    this.subscription = this.mealsService.meals$.subscribe();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
 }
