@@ -9,6 +9,7 @@ import { Store } from '../store';
 
 // feature modules
 import { AuthModule } from './auth/auth.module';
+import { HealthModule } from './health/health.module';
 
 // routes
 export const ROUTES: Routes = [];
@@ -27,6 +28,7 @@ import { AppNavComponent } from './components/app-nav/app-nav.component';
   imports: [
     BrowserModule,
     AuthModule,
+    HealthModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
