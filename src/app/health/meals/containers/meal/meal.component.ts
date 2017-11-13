@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MealsService, Meal } from '../../../shared/services/meals/meals.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'meal',
@@ -43,7 +44,9 @@ export class MealComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.mealsService.meals$.subscribe();
     this.meal$ = this.route.params
-      .switchMap(param => this.mealsService.getMeal(param.id));
+      .switchMap( param => {
+        return this.mealsService.getMeal(param.id);
+      });
   }
 
   ngOnDestroy() {
