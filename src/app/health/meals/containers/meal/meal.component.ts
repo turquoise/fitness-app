@@ -22,10 +22,20 @@ import 'rxjs/add/operator/map';
           </ng-template>
         </h1>
       </div>
-      <div>
-        <meal-form (create)="addMeal($event)" >
+      <div *ngIf="meal$ | async as meal; else loading">
+        <meal-form
+          [meal]="meal"
+          (create)="addMeal($event)"
+          (update)="updateMeal($event)"
+          (remove)="removeMeal($event)" >
         </meal-form>
       </div>
+      <ng-template #loading>
+        <div class="message">
+          <img src="/assets/img/loading.svg" >
+          Fetching meal...
+        </div>
+      </ng-template>
     </div>
   `
 })
@@ -56,6 +66,20 @@ export class MealComponent implements OnInit, OnDestroy {
   async addMeal(event: Meal) {
     //console.log('Meal: ', event);
     await this.mealsService.addMeal(event);
+    this.backToMeals();
+  }
+
+  async updateMeal(event: Meal) {
+    //console.log('update ', event);
+    const key = this.route.snapshot.params.id;
+    await this.mealsService.updateMeal(key, event);
+    this.backToMeals();
+  }
+
+  async removeMeal(event: Meal) {
+    //console.log('remove ', event);
+    const key = this.route.snapshot.params.id;
+    await this.mealsService.removeMeal(key);
     this.backToMeals();
   }
 
