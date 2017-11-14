@@ -12,10 +12,12 @@ import { ScheduleItem, ScheduleList } from '../../../shared/services/schedule/sc
         [selected]="selectedDay"
         (move)="onChange($event)">
       </schedule-controls>
+
       <schedule-days
         [selected]="selectedDayIndex"
         (select)="selectDay($event)">
       </schedule-days>
+
       <schedule-section
         *ngFor="let section of sections"
         [name]="section.name"
@@ -51,6 +53,7 @@ export class ScheduleCalendarComponent implements OnChanges {
 
   @Output()
   select = new EventEmitter<any>();
+
 
   constructor() {}
 

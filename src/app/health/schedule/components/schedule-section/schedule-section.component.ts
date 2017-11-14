@@ -22,6 +22,7 @@ import { ScheduleItem } from '../../../shared/services/schedule/schedule.service
           <div
             class="schedule-section__item"
             (click)="onSelect('meals')">
+            <img src="/assets/img/add.svg" >
             Assign meal
           </div>
         </ng-template>
@@ -35,6 +36,7 @@ import { ScheduleItem } from '../../../shared/services/schedule/schedule.service
           <div
             class="schedule-section__item"
             (click)="onSelect('workouts')">
+            <img src="/assets/img/add.svg" >
             Assign workout
           </div>
         </ng-template>
