@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/withLatestFrom';
 import { Meal } from '../meals/meals.service';
 import { Workout } from '../workouts/workouts.service';
 import { AuthService } from '../../../../auth/shared/services/auth/auth.service';
@@ -33,6 +34,16 @@ export class ScheduleService {
 
   private date$ = new BehaviorSubject(new Date());
   private section$ = new Subject();
+  private itemList$ = new Subject();
+
+  items$ = this.itemList$
+    .withLatestFrom(this.section$)
+    .map( ([ items, section]: any[]) => {
+
+      console.log(section.data.$key);
+      
+    });
+
   selected$ = this.section$
     .do( (next: any) => this.store.set('selected', next));
 
@@ -76,6 +87,10 @@ export class ScheduleService {
 
   get uid() {
     return this.authService.user.uid;
+  }
+
+  updateItems(items: string[]) {
+    this.itemList$.next(items);
   }
 
   updateDate(date: Date) {
